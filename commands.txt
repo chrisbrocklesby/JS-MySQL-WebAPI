@@ -1,0 +1,4 @@
+curl -XPOST -H "Content-Type: application/json" -d '{"field1": "1234"}' http://localhost:3000/test/
+curl -X "DELETE" http://localhost:3000/test/3
+
+

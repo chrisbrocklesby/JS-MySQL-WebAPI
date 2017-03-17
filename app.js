@@ -1,43 +1,63 @@
 var express = require('express')
 var app = express()
-var mysql = require('mysql');
+var mysql = require('mysql')
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
-var connection = mysql.createConnection({
+var db = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'password',
   database : 'test'
-});
-connection.connect();
+})
+db.connect()
 
 
 app.get('/:table/:id', function (req, res) {
-	var id = req.params.id;
+  var table = req.params.table
+  var id = req.params.id
 
-connection.query('SELECT * FROM test WHERE id = ?', [id], function(err, results) {
+  db.query('SELECT * FROM ' + table + ' WHERE id = ?', [id], function(err, data) {
     if (err) {
-      res.sendStatus(500);
+      res.sendStatus(500)
     } else {
-    	output = JSON.stringify(results);
-    	newStr = output.substring(1, output .length-1);
-    	newoutput = newStr.replace(/\"/g,'');
-      res.json('Status GET ' + newoutput);
+    	output = JSON.stringify(data)
+    	output = output.substring(1, output .length-1)
+    	output = output.replace(/\"/g,'')
+      res.json('Status GET ' + output)
     }
-  });
-
-  	
+  })
+ 	
 })
 
-app.put('/', function (req, res) {
-  res.send('Status PUT')
+app.post('/:table/', function (req, res) {
+  var table = req.params.table
+  var insert = req.body
+
+  db.query('INSERT INTO '+ table +' SET ?', [insert], function (err, data) {
+    if (err) {
+      res.sendStatus(500)
+    } else {
+      console.log(req.body)
+      res.send("Inserted")
+    } 
+  })
+
 })
 
-app.post('/', function (req, res) {
-  res.send('Status POST')
-})
+app.delete('/:table/:id', function (req, res) {
+  var table = req.params.table
+  var id = req.params.id
 
-app.delete('/', function (req, res) {
-  res.send('Status DELETE')
+  db.query('DELETE FROM '+ table +' WHERE id = '+ id, function (err, data) {
+    if (err) {
+      res.sendStatus(500)
+    } else {
+      console.log("Deleted")
+      res.send("Deleted")
+    } 
+  })
+
 })
 
 app.listen(3000, function () {
