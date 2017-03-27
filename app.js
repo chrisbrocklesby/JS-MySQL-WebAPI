@@ -4,7 +4,6 @@ var mysql = require('mysql')
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-
 var db = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
