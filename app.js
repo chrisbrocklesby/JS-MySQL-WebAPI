@@ -12,7 +12,6 @@ var db = mysql.createConnection({
 })
 db.connect()
 
-
 app.get('/:table/:id', function (req, res) {
   var table = req.params.table
   var id = req.params.id
