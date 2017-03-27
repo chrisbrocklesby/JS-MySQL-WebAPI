@@ -4,6 +4,7 @@ var mysql = require('mysql')
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+
 var db = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -27,7 +28,7 @@ app.get('/:table/:id', function (req, res) {
       res.json('Status GET ' + output)
     }
   })
- 	
+
 })
 
 app.post('/:table/', function (req, res) {
@@ -40,7 +41,7 @@ app.post('/:table/', function (req, res) {
     } else {
       console.log(req.body)
       res.send("Inserted")
-    } 
+    }
   })
 
 })
@@ -55,7 +56,7 @@ app.delete('/:table/:id', function (req, res) {
     } else {
       console.log("Deleted")
       res.send("Deleted")
-    } 
+    }
   })
 
 })

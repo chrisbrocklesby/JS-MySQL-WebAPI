@@ -1,0 +1,32 @@
+{
+  "name": "js-db-api",
+  "version": "1.0.0",
+  "description": "Express and MySQL Restful API",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "multer": "^1.3.0",
+    "mysql": "^2.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisbrocklesby/JS-DB-API.git"
+  },
+  "keywords": [
+    "MySQL",
+    "Express",
+    "API",
+    "Restful"
+  ],
+  "author": "Chris Brocklesby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisbrocklesby/JS-DB-API/issues"
+  },
+  "homepage": "https://github.com/chrisbrocklesby/JS-DB-API#readme"
+}
